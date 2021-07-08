@@ -1,13 +1,14 @@
+
 private fun fail():Nothing{
     throw Exception("願いは20文字まで入力してください。\n名前は10文字まで入力してください。")
 }
 
 fun main() {
     val strip = Array(14,{arrayOfNulls<Char>(7)})
-    var wish:String = ""
-    var name:String = ""
+    var wish:String
+    var name:String
     val tag = "#七夕\n#短冊"
-    
+
     // 枠を作る
     strip[0][0] = '┏'
     strip[0][6] = '┓'
@@ -27,7 +28,7 @@ fun main() {
         val wish_input:String? = readLine()
         wish = wish_input?.also{
             if(wish_input.length <= 20){
-                wish_input
+                wish_input.toString().toUpperCase()
             }else{
                 fail()
             }
@@ -38,7 +39,7 @@ fun main() {
         val name_input = readLine()
         name = name_input?.also{
             if(name_input.length <= 10){
-                name_input
+                name_input.toString().toUpperCase()
             }else{
                 fail()
             }
@@ -61,13 +62,12 @@ fun main() {
         for(i in 0..(name.length-1)){
             strip[st_name+i][1] = name[i]
         }
-        
+
         println("↓Twitterにコピペしよう↓")
-        
         for(i in 0..13){
             for(j in 0..6){
                 strip[i][j]?.also{
-                    print(strip[i][j])
+                    print(strip[i][j].toString().toUpperCase())
                 }?:run{
                     print("　")
                 }
@@ -78,7 +78,7 @@ fun main() {
     }catch(e:Exception){
         println(e)
     }catch(e:ArrayIndexOutOfBoundsException){
-        println("予期せぬエラーが発生しました。")   
+        println("予期せぬエラーが発生しました。")
     }finally{
     }
 }
